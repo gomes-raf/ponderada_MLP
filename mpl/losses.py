@@ -1,1 +1,0 @@
-# cross-entropy e outras que quiser

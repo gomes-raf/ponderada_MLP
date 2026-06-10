@@ -4,11 +4,11 @@ import numpy as np
 
 from mlp.activations import relu, relu_derivative, softmax
 from mlp.losses import cross_entropy
-from mlp.optimizers import SGD
+from mlp.optimizers import SGD, Momentum
 
 
 class MLP:
-    def __init__(self, layer_sizes, learning_rate=0.01, seed=42):
+    def __init__(self, layer_sizes, learning_rate=0.01, optimizer="sgd", seed=42):
         np.random.seed(seed)
 
         self.layer_sizes = layer_sizes
@@ -16,7 +16,15 @@ class MLP:
         self.cache = {}
         self.grads = {}
 
-        self.optimizer = SGD(learning_rate)
+        if optimizer.lower() == "momentum":
+            self.optimizer = Momentum(
+                learning_rate=learning_rate,
+                beta=0.9
+            )
+        else:
+            self.optimizer = SGD(
+                learning_rate=learning_rate
+            )
 
         self._initialize_weights()
 

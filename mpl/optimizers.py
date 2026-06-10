@@ -1,1 +1,0 @@
-# SGD e opcionais
