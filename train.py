@@ -72,7 +72,7 @@ def main():
     model = MLP(
         layer_sizes=[784, 64, 10],
         learning_rate=0.01,
-        seed=42
+        optimizer="momentum"
     )
 
     history = model.fit(
